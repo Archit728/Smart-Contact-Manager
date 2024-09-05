@@ -6,9 +6,12 @@ import com.scm.helpers.Message;
 import com.scm.helpers.MessageType;
 import com.scm.services.UserService;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -71,7 +74,7 @@ public class PageController {
     This allows Spring to populate the UserForm object with the form's fields (like username, email, password, etc.). */
   @RequestMapping(value = "/do-register", method = RequestMethod.POST)
   public String processRegister(
-    @ModelAttribute UserForm userForm,
+   @Valid @ModelAttribute UserForm userForm, BindingResult rBindingResult,
     HttpSession session
   ) {
     // System.out.println("processing registation");
@@ -86,6 +89,11 @@ public class PageController {
     //   .profilePic("http://localhost:8081/images/default_pic.jpg")
     //   .build();
     //builder was unable to put default values
+
+    //validating form
+    if(rBindingResult.hasErrors()){
+      return "register";
+    }
     User user = new User();
     user.setName(userForm.getName());
     user.setEmail(userForm.getEmail());
