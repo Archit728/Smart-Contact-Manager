@@ -3,6 +3,7 @@ package com.scm.entities;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
@@ -54,8 +55,10 @@ public class User {
   private boolean emailVerified = false;
   private boolean phoneVerified = false;
 
+  @Enumerated
   //how the user signed up- self, google, facebook, twitter, linkedIn, github(by which way the user singed up)
   private Providers provider = Providers.SELF;
+
   private String providerUserId;
 
   //add more fields if needed
@@ -71,10 +74,8 @@ public class User {
    * useful when you have a parent-child relationship, and when a child entity is no longer associated with the parent, you want the child to be deleted automatically.
    * Without orphanRemoval, the child entity would stay in the database unless explicitly removed.
    * The mappedBy attribute is used to define the inverse side of a bidirectional relationship. It tells Hibernate that the relationship is already being managed by the other side (the "owning side").
-   * In a bidirectional relationship, one entity owns the relationship (the owning side), and the other is the inverse side (the non-owning side). 
+   * In a bidirectional relationship, one entity owns the relationship (the owning side), and the other is the inverse side (the non-owning side).
    * The mappedBy attribute is used on the inverse side to indicate which field or property is responsible for managing the relationship.
    */
   private List<Contact> contacts = new ArrayList<>();
-
- 
 }

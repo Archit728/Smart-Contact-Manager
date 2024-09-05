@@ -11,7 +11,7 @@
     <script>
       // Immediately apply the theme from localStorage before anything renders to avoid flash of unstyled content (FOUC) or flash of incorrect theme.
       (function () {
-        const savedTheme = localStorage.getItem("theme") || "light";
+        const savedTheme = localStorage.getItem('theme') || 'light';
         document.documentElement.classList.add(savedTheme);
       })();
     </script>
