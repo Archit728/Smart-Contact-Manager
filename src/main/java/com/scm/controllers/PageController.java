@@ -2,7 +2,10 @@ package com.scm.controllers;
 
 import com.scm.entities.User;
 import com.scm.forms.UserForm;
+import com.scm.helpers.Message;
+import com.scm.helpers.MessageType;
 import com.scm.services.UserService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -67,19 +70,40 @@ public class PageController {
   /* The @ModelAttribute annotation is used to bind the form data (usually submitted via the POST request) to the UserForm object.
     This allows Spring to populate the UserForm object with the form's fields (like username, email, password, etc.). */
   @RequestMapping(value = "/do-register", method = RequestMethod.POST)
-  public String processRegister(@ModelAttribute UserForm userForm) {
+  public String processRegister(
+    @ModelAttribute UserForm userForm,
+    HttpSession session
+  ) {
     // System.out.println("processing registation");
     // System.out.println(userForm);
-    User user = User
-      .builder()
-      .name(userForm.getName())
-      .email(userForm.getEmail())
-      .password(userForm.getPassword())
-      .about(userForm.getAbout())
-      .phoneNumber(userForm.getPhoneNumber())
-      .profilePic("http://localhost:8081/images/default_pic.jpg")
-      .build();
+    // User user = User
+    //   .builder()
+    //   .name(userForm.getName())
+    //   .email(userForm.getEmail())
+    //   .password(userForm.getPassword())
+    //   .about(userForm.getAbout())
+    //   .phoneNumber(userForm.getPhoneNumber())
+    //   .profilePic("http://localhost:8081/images/default_pic.jpg")
+    //   .build();
+    //builder was unable to put default values
+    User user = new User();
+    user.setName(userForm.getName());
+    user.setEmail(userForm.getEmail());
+    user.setPassword(userForm.getPassword());
+    user.setAbout(userForm.getAbout());
+    user.setPhoneNumber(userForm.getPhoneNumber());
+    user.setProfilePic(
+      "https://archive.org/download/default_pic/default_pic.jpg"
+    );
     userService.saveUser(user);
+
+    //using session to handle message to be displayed
+    Message message = Message
+      .builder()
+      .content("Registration Successful!")
+      .type(MessageType.green)
+      .build();
+    session.setAttribute("message", message);
     return "redirect:/register"; //this will redirect to this route(/register)
   }
 }
