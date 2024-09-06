@@ -2,6 +2,7 @@ package com.scm.entities;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -11,12 +12,18 @@ import jakarta.persistence.Lob;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity(name = "user")
 /*  Marks a class as an entity, which means it is mapped to a table in a relational database. 
@@ -29,7 +36,7 @@ It allows customization of the table name, schema, and unique constraints. Optio
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class User {
+public class User implements UserDetails { //making the class as UserDetails for spring securitty as it says use UserDetails to represent user
 
   @Id
   private String userId;
@@ -52,12 +59,16 @@ public class User {
 
   private String phoneNumber;
   //information
-  private boolean enabled = false;
+  @Builder.Default
+  private boolean enabled = true;
+  @Builder.Default
   private boolean emailVerified = false;
+  @Builder.Default
   private boolean phoneVerified = false;
 
   @Enumerated(value = EnumType.STRING)
   //how the user signed up- self, google, facebook, twitter, linkedIn, github(by which way the user singed up)
+  @Builder.Default
   private Providers provider = Providers.SELF;
 
   private String providerUserId;
@@ -78,5 +89,29 @@ public class User {
    * In a bidirectional relationship, one entity owns the relationship (the owning side), and the other is the inverse side (the non-owning side).
    * The mappedBy attribute is used on the inverse side to indicate which field or property is responsible for managing the relationship.
    */
+  @Builder.Default
   private List<Contact> contacts = new ArrayList<>();
+
+  //defining roles for each user
+  @Builder.Default
+  @ElementCollection(fetch = FetchType.EAGER)
+  List<String> roleList = new ArrayList<>();
+
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    // list of roles[USER, ADMIN] => collection of SimpleGrantedAuthority{ADMIN,USER}
+    Collection<SimpleGrantedAuthority> roles=  roleList.stream().map(role ->new SimpleGrantedAuthority(role)).collect(Collectors.toList());
+    return roles;
+  }
+
+  //email = username
+  @Override
+  public String getUsername() {
+    return this.email;
+  }
+
+  @Override
+  public boolean isEnabled() {
+    return this.enabled;
+  }
 }

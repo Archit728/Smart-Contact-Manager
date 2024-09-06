@@ -7,7 +7,6 @@ import com.scm.helpers.MessageType;
 import com.scm.services.UserService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +21,12 @@ public class PageController {
 
   @Autowired
   private UserService userService;
+
+  //this is for homepage ie "/" route
+  @GetMapping("/")
+  public String index() {
+    return "redirect:/home";
+  }
 
   @RequestMapping("/home")
   public String home(Model model) {
@@ -51,12 +56,12 @@ public class PageController {
   //contact page
   @GetMapping("/contact")
   public String contactPage() {
-    return new String("contact");
+    return "contact";
   }
 
   @GetMapping("/login")
   public String loginPage() {
-    return new String("login");
+    return "login";
   }
 
   @GetMapping("/register")
@@ -66,7 +71,7 @@ public class PageController {
     // userForm.setName("Archit");
     // userForm.setAbout("this is about: I am learning");
     model.addAttribute("userForm", userForm);
-    return new String("register");
+    return "register";
   }
 
   //processing signup form
@@ -74,7 +79,8 @@ public class PageController {
     This allows Spring to populate the UserForm object with the form's fields (like username, email, password, etc.). */
   @RequestMapping(value = "/do-register", method = RequestMethod.POST)
   public String processRegister(
-   @Valid @ModelAttribute UserForm userForm, BindingResult rBindingResult,
+    @Valid @ModelAttribute UserForm userForm,
+    BindingResult rBindingResult,
     HttpSession session
   ) {
     // System.out.println("processing registation");
@@ -91,7 +97,7 @@ public class PageController {
     //builder was unable to put default values
 
     //validating form
-    if(rBindingResult.hasErrors()){
+    if (rBindingResult.hasErrors()) {
       return "register";
     }
     User user = new User();
