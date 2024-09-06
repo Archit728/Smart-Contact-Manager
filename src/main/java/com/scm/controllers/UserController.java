@@ -1,13 +1,13 @@
 package com.scm.controllers;
 
+import com.scm.helpers.Helper;
 import com.scm.services.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 //handling and securing all the user related routes
 @Controller
 @RequestMapping("/user")
@@ -27,7 +27,9 @@ public class UserController {
 
   // user profile page
   @RequestMapping(value = "/profile")
-  public String userProfile(Model model) {
+  public String userProfile(Authentication authentication) {
+    String username = Helper.getEmailOfLoggedInUser(authentication);
+    logger.info("User logged in {}", username);
     return "user/profile";
   }
   // user add contacts page

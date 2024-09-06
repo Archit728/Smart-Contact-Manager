@@ -64,6 +64,7 @@ public class PageController {
     return "login";
   }
 
+  //to show the view of registration
   @GetMapping("/register")
   public String registerPage(Model model) {
     UserForm userForm = new UserForm();
