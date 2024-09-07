@@ -4,10 +4,16 @@
   th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}"
 >
   <head>
-    <title>dashboard Page</title>
+    <title data-th-text="${loggedInUser.name}+' |  Dashboard'">
+      Dashboard Page
+    </title>
   </head>
   <body>
     <div id="content">
+      <!-- user is logged in : sidebar -->
+      <div th:if="${loggedInUser}">
+        <div data-th-replace="~{user/sidebar :: sidebar}"></div>
+      </div>
       <div class="sm:pl-64 pt-20" style="height: 1000px">
         <div class="flex justify-center flex-col items-center">
           <h1 class="text-5xl">Welcome to Dashboard page</h1>
@@ -15,9 +21,6 @@
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
             Consequatur, ratione!
           </p>
-          <form data-th-action="@{/logout}" method="post">
-            <button type="submit">Logout</button>
-          </form>
         </div>
       </div>
     </div>

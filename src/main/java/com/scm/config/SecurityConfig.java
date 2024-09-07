@@ -21,6 +21,7 @@ public class SecurityConfig {
 
   @Autowired
   private OAuthAuthenicationSuccessHandler handler;
+
   //configuration of authentication provider for spring security
   @Bean
   public DaoAuthenticationProvider authenticationProvider() {
@@ -55,7 +56,7 @@ public class SecurityConfig {
       formLogin
         .loginPage("/login") //login page is present at this url
         .loginProcessingUrl("/authenticate"); //submission will happen at this url ie all the processing(we can all the methods too)
-      formLogin.successForwardUrl("/user/dashboard"); //after login the user will come to this page
+      formLogin.successForwardUrl("/user/profile"); //after login the user will come to this page
       // formLogin.failureForwardUrl("/login?error=true");    //if error occured during login
       formLogin.usernameParameter("email"); //use email as username
       formLogin.passwordParameter("password");
@@ -72,7 +73,6 @@ public class SecurityConfig {
       oauth.loginPage("/login");
       oauth.successHandler(handler);
     });
-
 
     return httpSecurity.build();
   }
