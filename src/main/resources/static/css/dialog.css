@@ -1,0 +1,30 @@
+/* Custom SweetAlert2 Styles */
+.swal2-popup {
+  font-size: 1.2rem; /* Adjust font size */
+  border-radius: 10px; /* Adjust border radius */
+}
+
+.swal2-title {
+  color: #4a90e2; /* Change title color */
+  font-weight: bold; /* Make title bold */
+}
+
+.swal2-content {
+  color: #333; /* Change content color */
+}
+
+.swal2-confirm {
+  background-color: #4a90e2; /* Change confirm button background color */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Adjust border radius */
+}
+
+.swal2-cancel {
+  background-color: #f44336; /* Change cancel button background color */
+  border: none; /* Remove border */
+  border-radius: 5px; /* Adjust border radius */
+}
+
+.swal2-button {
+  padding: 10px 20px; /* Adjust button padding */
+}

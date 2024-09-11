@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html
   lang="en"
-  th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}"
+  data-th-replace="~{base :: parent(~{::#content},~{::title},~{::script})}"
 >
   <head>
     <title>All Your Contacts</title>
@@ -169,6 +169,7 @@
 
                         <!-- delete contact -->
                         <button
+                          th:onclick="deleteContact([[${c.id}]])"
                           class="text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                         >
                           <i
@@ -177,6 +178,7 @@
                         </button>
                         <!-- update contact -->
                         <a
+                          data-th-href="@{'/user/contacts/view/'+*{id}}"
                           class="text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                         >
                           <i
@@ -186,6 +188,7 @@
 
                         <!-- viewcontact -->
                         <button
+                          th:onclick="loadContactdata([[${c.id}]])"
                           class="text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
                         >
                           <i
@@ -246,9 +249,9 @@
             </div>
           </div>
         </div>
+        <div data-th-replace="~{ user/contact_modals :: contact}"></div>
       </div>
     </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/@linways/table-to-excel@1.0.4/dist/tableToExcel.min.js"></script>
+    <script data-th-src="@{'/js/contacts.js'}"></script>
   </body>
 </html>
