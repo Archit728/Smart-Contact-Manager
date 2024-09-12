@@ -1,17 +1,90 @@
 <!DOCTYPE html>
 <html lang="en" th:replace="~{base :: parent(~{::#content},~{::title},~{})}">
   <head>
-  
-    <title>
-      Services Page
-    </title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Services - Smart Contact Manager</title>
   </head>
   <body>
-    <section id="content">
-      <h1>Welcome to services page</h1>
-      <h2>Services offered by SCM</h2>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas dolore assumenda rerum harum mollitia incidunt nesciunt dignissimos esse dicta reprehenderit quam, quisquam aspernatur enim consequatur accusamus, minima alias odit ducimus.<10></10>
-    </section>
+    <section id="content" class="px-4 py-10 mt-5">
+      <h1 class="text-4xl font-bold text-gray-800 dark:text-white text-center">
+        Our Services
+      </h1>
+      <p class="mt-4 text-lg text-gray-600 dark:text-gray-400 text-center">
+        Smart Contact Manager offers a range of services to help you manage your
+        contacts efficiently and securely.
+      </p>
 
+      <div
+        class="container mx-auto mt-10 grid grid-cols-1 md:grid-cols-2 gap-8"
+      >
+        <!-- Contact Management -->
+        <div class="service bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+          <h2 class="text-2xl font-semibold text-gray-800 dark:text-white mb-4">
+            Contact Management
+          </h2>
+          <p class="text-gray-600 dark:text-gray-400">
+            Effortlessly store, organize, and manage all your contacts in one
+            secure platform. Easily access your contact data from any device.
+          </p>
+        </div>
+
+        <!-- Cloud Backup -->
+        <div class="service bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+          <h2 class="text-2xl font-semibold text-gray-800 dark:text-white mb-4">
+            Secure Database Backup
+          </h2>
+          <p class="text-gray-600 dark:text-gray-400">
+            All your contact information is safely backed up to a secured
+            database, ensuring that your data is accessible and secure at all
+            times.
+          </p>
+        </div>
+
+        <!-- Email Integration -->
+        <!-- <div class="service bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+          <h2 class="text-2xl font-semibold text-gray-800 dark:text-white mb-4">
+            Email Integration
+          </h2>
+          <p class="text-gray-600 dark:text-gray-400">
+            Seamlessly send and receive emails directly within the platform.
+            Keep track of your communication history with all your contacts.
+          </p>
+        </div> -->
+
+        <!-- User Authentication -->
+        <div class="service bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+          <h2 class="text-2xl font-semibold text-gray-800 dark:text-white mb-4">
+            User Authentication
+          </h2>
+          <p class="text-gray-600 dark:text-gray-400">
+            Secure login with OAuth2, allowing users to sign in with Google or
+            GitHub for seamless and secure authentication.
+          </p>
+        </div>
+
+        <!-- Data Privacy -->
+        <div class="service bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+          <h2 class="text-2xl font-semibold text-gray-800 dark:text-white mb-4">
+            Data Privacy
+          </h2>
+          <p class="text-gray-600 dark:text-gray-400">
+            We prioritize your data privacy with industry-leading encryption to
+            ensure that your contacts and personal information remain safe.
+          </p>
+        </div>
+
+        <!-- Reports and Analytics -->
+        <!-- <div class="service bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
+          <h2 class="text-2xl font-semibold text-gray-800 dark:text-white mb-4">
+            Reports and Analytics
+          </h2>
+          <p class="text-gray-600 dark:text-gray-400">
+            Generate insightful reports and analytics on your contact data,
+            helping you stay informed about your relationships and interactions.
+          </p>
+        </div> -->
+      </div>
+    </section>
   </body>
 </html>

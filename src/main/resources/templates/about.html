@@ -4,16 +4,87 @@
   th:replace="~{base :: parent(~{::#content},~{::title},~{::script})}"
 >
   <head>
-    <title>About Page</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us</title>
   </head>
   <body>
-    <div id="content">
-      <h1>Welcome to about page</h1>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur,
-        ratione!
-      </p>
+    <div id="content" class="px-4 py-10">
+      <!-- About Section -->
+      <section class="about bg-gray-50 dark:bg-gray-800 py-12 text-center">
+        <div class="container mx-auto">
+          <h1 class="text-4xl font-bold text-gray-800 dark:text-white">
+            About Smart Contact Manager
+          </h1>
+          <p class="mt-4 text-gray-600 dark:text-gray-400">
+            Smart Contact Manager is a simple yet powerful solution for
+            organizing and managing your contacts with ease. Our platform allows
+            you to securely store, access, and manage your contacts anytime,
+            anywhere.
+          </p>
+        </div>
+      </section>
+
+      <!-- Our Mission -->
+      <section class="mission bg-white dark:bg-gray-900 py-12">
+        <div class="container mx-auto text-center">
+          <h2 class="text-3xl font-semibold text-gray-800 dark:text-white">
+            Our Mission
+          </h2>
+          <p class="mt-4 text-gray-600 dark:text-gray-400">
+            At Smart Contact Manager, our mission is to simplify contact
+            management while providing the highest level of data security and
+            user experience. We aim to be the go-to platform for professionals,
+            businesses, and individuals who need an efficient contact management
+            solution.
+          </p>
+        </div>
+      </section>
+
+      <!-- Why Choose Us -->
+      <section
+        class="why-choose-us bg-gray-50 dark:bg-gray-800 py-12 text-center"
+      >
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div class="benefit">
+            <i class="fa-solid fa-cloud text-4xl text-blue-600"></i>
+            <h3
+              class="mt-4 text-xl font-semibold text-gray-800 dark:text-white"
+            >
+              Reliable Cloud Storage
+            </h3>
+            <p class="mt-2 text-gray-600 dark:text-gray-400">
+              Access your contacts securely from anywhere with our cloud storage
+              solution.
+            </p>
+          </div>
+          <div class="benefit">
+            <i class="fa-solid fa-shield-alt text-4xl text-blue-600"></i>
+            <h3
+              class="mt-4 text-xl font-semibold text-gray-800 dark:text-white"
+            >
+              Data Security
+            </h3>
+            <p class="mt-2 text-gray-600 dark:text-gray-400">
+              We use the latest security measures to ensure your contact
+              information is protected.
+            </p>
+          </div>
+          <div class="benefit">
+            <i class="fa-solid fa-envelope text-4xl text-blue-600"></i>
+            <h3
+              class="mt-4 text-xl font-semibold text-gray-800 dark:text-white"
+            >
+              Seamless Email Integration
+            </h3>
+            <p class="mt-2 text-gray-600 dark:text-gray-400">
+              Send emails to your contacts directly from the platform with ease.
+            </p>
+          </div>
+        </div>
+      </section>
     </div>
+
     <script>
       console.log("about page");
     </script>

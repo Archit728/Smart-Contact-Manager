@@ -10,7 +10,84 @@
     <link rel="stylesheet" data-th-href="@{'/css/output.css'}" />
   </head>
   <body>
-    <div id="content"></div>
+    <div id="content">
+      <!-- Hero Section -->
+      <section class="hero bg-gray-50 dark:bg-gray-800 py-20 text-center">
+        <div class="container mx-auto">
+          <h1 class="text-5xl font-bold text-gray-800 dark:text-white">
+            Welcome to Smart Contact Manager
+          </h1>
+          <p class="mt-4 text-gray-600 dark:text-gray-400">
+            Manage all your contacts effortlessly with advanced cloud storage
+            and email integration.
+          </p>
+          <a
+            href="/user/login"
+            class="mt-6 inline-block px-6 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700"
+          >
+            Get Started
+          </a>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section class="features bg-white dark:bg-gray-900 py-16">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div class="feature text-center">
+            <i class="fa-solid fa-cloud-upload-alt text-4xl text-blue-600"></i>
+            <h3
+              class="mt-4 text-xl font-semibold text-gray-800 dark:text-white"
+            >
+              Cloud Storage
+            </h3>
+            <p class="mt-2 text-gray-600 dark:text-gray-400">
+              Safely store and access your contacts anytime, anywhere.
+            </p>
+          </div>
+          <div class="feature text-center">
+            <i class="fa-solid fa-envelope text-4xl text-blue-600"></i>
+            <h3
+              class="mt-4 text-xl font-semibold text-gray-800 dark:text-white"
+            >
+              Email Integration
+            </h3>
+            <p class="mt-2 text-gray-600 dark:text-gray-400">
+              Send emails directly to your contacts with a single click.
+            </p>
+          </div>
+          <div class="feature text-center">
+            <i class="fa-solid fa-shield-alt text-4xl text-blue-600"></i>
+            <h3
+              class="mt-4 text-xl font-semibold text-gray-800 dark:text-white"
+            >
+              Secure & Private
+            </h3>
+            <p class="mt-2 text-gray-600 dark:text-gray-400">
+              Your contacts are protected with the latest security measures.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Call to Action Section -->
+      <section class="cta bg-gray-50 dark:bg-gray-800 py-16 text-center">
+        <div class="container mx-auto">
+          <h2 class="text-3xl font-bold text-gray-800 dark:text-white">
+            Start managing your contacts today
+          </h2>
+          <p class="mt-4 text-gray-600 dark:text-gray-400">
+            Join thousands of users who trust us to keep their contacts safe and
+            accessible.
+          </p>
+          <a
+            href="/register"
+            class="mt-6 inline-block px-6 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700"
+          >
+            Sign Up for Free
+          </a>
+        </div>
+      </section>
+    </div>
 
     <script>
       console.log("Home page");

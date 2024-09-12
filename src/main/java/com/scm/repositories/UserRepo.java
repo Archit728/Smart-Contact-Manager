@@ -6,8 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepo
-  extends JpaRepository<User, String> { //working with what entity and id of that entity
+public interface UserRepo extends JpaRepository<User, String> { //working with what entity and id of that entity
   //extra db related methods
   //custom query/finder methods can be written too
   /* Spring Data JPA automatically provides the implementation for you at runtime based on the method name. 
