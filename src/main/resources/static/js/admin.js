@@ -1,4 +1,4 @@
-// console.log("admin user");
+console.log("admin user");
 
 document
   .querySelector("#image_file_input")
