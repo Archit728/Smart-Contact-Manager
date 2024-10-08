@@ -1,14 +1,23 @@
 package com.scm.config;
 
 import com.scm.services.impl.SecurityCustomUserDetailService;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
 @Configuration
 public class SecurityConfig {
@@ -22,6 +31,8 @@ public class SecurityConfig {
   @Autowired
   private OAuthAuthenicationSuccessHandler handler;
 
+  @Autowired
+  private AuthFailureHandler authFailureHandler;
   //configuration of authentication provider for spring security
   @Bean
   public DaoAuthenticationProvider authenticationProvider() {
@@ -61,6 +72,23 @@ public class SecurityConfig {
       formLogin.usernameParameter("email"); //use email as username
       formLogin.passwordParameter("password");
       // we can also define success and failure handlers that will run the methods upon success or failure of authentication
+
+      //using anonymous class
+      // formLogin.failureHandler(new AuthenticationFailureHandler() {
+
+      //   @Override
+      //   public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
+      //       AuthenticationException exception) throws IOException, ServletException {
+      //     // TODO Auto-generated method stub
+      //     throw new UnsupportedOperationException("Unimplemented method 'onAuthenticationFailure'");
+      //   }
+        
+      // });
+      // using lambda
+      // formLogin.failureHandler((request, response, exception)->{});
+
+      formLogin.failureHandler(authFailureHandler);
+
 
     });
 

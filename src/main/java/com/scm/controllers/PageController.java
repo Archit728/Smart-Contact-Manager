@@ -107,9 +107,10 @@ public class PageController {
     user.setPassword(userForm.getPassword());
     user.setAbout(userForm.getAbout());
     user.setPhoneNumber(userForm.getPhoneNumber());
+    user.setEnabled(false);
     user.setProfilePic(
       "https://archive.org/download/default_pic/default_pic.jpg"
-    );
+    ); //don't hardcode image strings
     userService.saveUser(user);
 
     //using session to handle message to be displayed

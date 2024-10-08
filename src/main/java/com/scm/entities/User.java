@@ -15,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -36,7 +35,7 @@ It allows customization of the table name, schema, and unique constraints. Optio
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class User implements UserDetails { //making the class as UserDetails for spring securitty as it says use UserDetails to represent user
+public class User implements UserDetails { //making the class as UserDetails for spring security as it uses UserDetails to represent user so if we return email in username method by spring security it will understand it as username
 
   @Id
   private String userId;
@@ -58,11 +57,14 @@ public class User implements UserDetails { //making the class as UserDetails for
   private String profilePic;
 
   private String phoneNumber;
+
   //information
   @Builder.Default
-  private boolean enabled = true;
+  private boolean enabled = false; //if enabled user can login or else won't and spring security will be used to authenticate this
+
   @Builder.Default
   private boolean emailVerified = false;
+
   @Builder.Default
   private boolean phoneVerified = false;
 
@@ -100,7 +102,10 @@ public class User implements UserDetails { //making the class as UserDetails for
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
     // list of roles[USER, ADMIN] => collection of SimpleGrantedAuthority{ADMIN,USER}
-    Collection<SimpleGrantedAuthority> roles=  roleList.stream().map(role ->new SimpleGrantedAuthority(role)).collect(Collectors.toList());
+    Collection<SimpleGrantedAuthority> roles = roleList
+      .stream()
+      .map(role -> new SimpleGrantedAuthority(role))
+      .collect(Collectors.toList());
     return roles;
   }
 
