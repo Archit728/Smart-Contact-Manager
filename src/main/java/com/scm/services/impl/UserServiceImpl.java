@@ -2,8 +2,10 @@ package com.scm.services.impl;
 
 import com.scm.entities.User;
 import com.scm.helpers.AppConstants;
+import com.scm.helpers.Helper;
 import com.scm.helpers.ResourceNotFoundException;
 import com.scm.repositories.UserRepo;
+import com.scm.services.EmailService;
 import com.scm.services.UserService;
 import java.util.List;
 import java.util.Optional;
@@ -25,6 +27,9 @@ public class UserServiceImpl implements UserService {
 
   private Logger logger = LoggerFactory.getLogger(this.getClass()); //to log
 
+  @Autowired
+  private EmailService emailService;
+
   @Override
   public User saveUser(User user) {
     //before saving we need to generate the id dynamically
@@ -37,7 +42,18 @@ public class UserServiceImpl implements UserService {
 
     user.setRoleList(List.of(AppConstants.ROLE_USER));
     logger.info(user.getProvider().toString());
-    return userRepo.save(user);
+
+    
+    String emailtoken = UUID.randomUUID().toString();
+    user.setEmailVerificationToken(emailtoken);
+    User savedUser = userRepo.save(user);
+    String emailLink = Helper.getLinkForEmailVerificatiton(emailtoken);
+    emailService.sendEmail(
+      savedUser.getEmail(),
+      "Verify Account: Email Verification for Smart Contact Manager",
+      emailLink
+    );
+    return savedUser;
   }
 
   @Override

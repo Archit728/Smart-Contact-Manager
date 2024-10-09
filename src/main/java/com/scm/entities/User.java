@@ -99,6 +99,8 @@ public class User implements UserDetails { //making the class as UserDetails for
   @ElementCollection(fetch = FetchType.EAGER)
   List<String> roleList = new ArrayList<>();
 
+  private String emailVerificationToken;
+
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {
     // list of roles[USER, ADMIN] => collection of SimpleGrantedAuthority{ADMIN,USER}
