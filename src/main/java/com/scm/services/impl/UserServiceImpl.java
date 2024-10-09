@@ -39,11 +39,10 @@ public class UserServiceImpl implements UserService {
     user.setPassword(passwordEncoder.encode(user.getPassword()));
 
     //setting the user role
-
     user.setRoleList(List.of(AppConstants.ROLE_USER));
     logger.info(user.getProvider().toString());
 
-    
+    //sending email verification link upon registration
     String emailtoken = UUID.randomUUID().toString();
     user.setEmailVerificationToken(emailtoken);
     User savedUser = userRepo.save(user);

@@ -16,4 +16,6 @@ public interface UserRepo extends JpaRepository<User, String> { //working with w
     The prefix findBy indicates that you want to retrieve data (in this case, an Optional<User>) based on a condition.
     The suffix Email corresponds to the field in your User entity (i.e., the email field).*/
   Optional<User> findByEmail(String email);
+
+  Optional<User> findByEmailVerificationToken(String emailToken);
 }
